@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import Footer from "@/app/components/Footer";
 
 const licPlans = [
   { name: "Jeevan Anand", desc: "Best for lifelong protection", emoji: "🛡️" },
@@ -15,207 +17,323 @@ const licPlans = [
 ];
 
 const agents = [
-  "Amit Sharma", "Priya Singh", "Rahul Verma", "Sunita Patel", "Vikas Gupta",
-  "Neha Joshi", "Rohit Kumar", "Anjali Mehra", "Suresh Yadav", "Pooja Rani"
+  "Sapna Kumari", "Priya Singh", "Rahul Verma"
 ];
 const clients = [
-  "Ramesh Kumar", "Sanjay Singh", "Meena Gupta", "Deepak Sharma", "Kavita Jain",
-  "Arun Mishra", "Seema Agarwal", "Vivek Soni", "Nisha Bansal", "Manoj Tiwari"
+  "Ramesh Kumar", "Sanjay Singh", "Meena Gupta",
 ];
 const cities = [
-  "Delhi", "Mumbai", "Bangalore", "Chennai", "Kolkata", "Hyderabad", "Pune", "Ahmedabad", "Jaipur", "Lucknow"
+  { name: "Mumbai", emoji: "🌆", desc: "Financial Hub" },
+  { name: "Delhi", emoji: "🏛️", desc: "Capital City" },
+  { name: "Bangalore", emoji: "💻", desc: "Tech City" },
+  { name: "Kolkata", emoji: "🛶", desc: "Cultural Hub" },
+  { name: "Patna", emoji: "🏛️", desc: "Capital City" },
+  { name: "Lucknow", emoji: "💻", desc: "Tech City" },
+  { name: "Bhubaneswar", emoji: "🛶", desc: "Cultural Hub" },
 ];
 const news = [
-  { title: "LIC launches new plan for youth", emoji: "📰" },
-  { title: "Record claims settled in 2025", emoji: "🏆" },
-  { title: "Digital onboarding for clients", emoji: "💻" },
+  {
+    title: "LIC Launches New Plan for Youth",
+    emoji: "🧑‍💼",
+    time: "1 hour ago",
+    desc: "The Jeevan Udaan plan aims to provide maximum returns with minimal premium for youth under 25.",
+  },
+  {
+    title: "Policy Bonus Increased by 2%",
+    emoji: "📈",
+    time: "3 hours ago",
+    desc: "LIC declared an increase in annual policyholder bonus, affecting all endowment plans from April 2025.",
+  },
+  {
+    title: "New Tax Benefits Introduced",
+    emoji: "💰",
+    time: "Today",
+    desc: "LIC policies under Section 80C and 10(10D) now include an extra tax rebate slab for salaried individuals.",
+  },
 ];
-const socials = [
-  { name: "Twitter", url: "https://twitter.com/", icon: "🐦" },
-  { name: "Facebook", url: "https://facebook.com/", icon: "📘" },
-  { name: "Instagram", url: "https://instagram.com/", icon: "📸" },
-  { name: "LinkedIn", url: "https://linkedin.com/", icon: "💼" },
-];
+
+
 
 const Home = () => {
   return (
     <main className="bg-gradient-to-b from-blue-50 to-white min-h-screen flex flex-col items-center">
-      {/* Hero Section - Two Columns */}
-      <section className="w-full min-h-[80vh] flex flex-col md:flex-row items-center justify-center px-4 md:px-16 py-10 gap-8 animate-fade-in-up">
-        {/* Left: Text & Branding */}
-        <div className="flex-1 flex flex-col justify-center items-start max-w-xl w-full">
-          <div className="mb-4">
-            <Image src="/myageny_logo.png" alt="Myageny Logo" width={64} height={64} className="mb-2" />
-            <Image src="/myageny_name.png" alt="Myageny Name" width={300} height={80} className="mb-2" />
+      {/* Hero Section - Enhanced with Animations and Style */}
+      <section className="w-full min-h-[80vh] flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-16  bg-gradient-to-br from-white via-blue-50 to-purple-100 dark:from-gray-900 dark:via-slate-800 dark:to-black animate-fade-in-up rounded-xl shadow-lg">
+
+        {/* Left: Branding & Text */}
+        <div className="flex-1 flex flex-col justify-center items-start gap-4 max-w-2xl w-full">
+
+          {/* Logo and Name */}
+          <div className="flex items-center gap-3">
+            <Image src="/myageny_logo.png" alt="Myageny Logo" width={56} height={56} className="rounded-full shadow-md animate-bounce" />
+            <Image src="/myageny_name.png" alt="Myageny Name" width={200} height={56} className="object-contain" />
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-2">
-            🤝 Smooth Communication Between LIC Agents & Clients
-          </h2>
-          <p className="text-lg md:text-xl text-gray-700 mb-1">
-            Our company provides seamless communication between agents and clients associated with LIC, ensuring trust, transparency, and convenience.
+
+          {/* Headline */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-700 dark:text-blue-300 tracking-tight leading-tight">
+            🤝 Connecting LIC Agents & Clients with Trust & Transparency
+          </h1>
+
+          {/* Description */}
+          <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+            Boost your LIC journey with seamless communication between agents and clients. Built for performance, trust, and user-friendliness.
           </p>
-          <p className="text-lg md:text-xl text-blue-700 font-semibold">
+          <p className="text-md sm:text-lg text-blue-800 dark:text-blue-400 font-medium italic">
             हमारी कंपनी एलआईसी से जुड़े एजेंटों और ग्राहकों के बीच निर्बाध संचार प्रदान करती है, जिससे विश्वास, पारदर्शिता और सुविधा सुनिश्चित होती है।
           </p>
+
+          {/* Key Info Highlights */}
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+            <div className="flex items-center gap-2 text-sm sm:text-base text-green-700 dark:text-green-300">
+              ✅ Instant Client Queries
+            </div>
+            <div className="flex items-center gap-2 text-sm sm:text-base text-purple-700 dark:text-purple-300">
+              🔒 Secure Agent Login
+            </div>
+            <div className="flex items-center gap-2 text-sm sm:text-base text-indigo-700 dark:text-indigo-300">
+              📱 Mobile Friendly
+            </div>
+            <div className="flex items-center gap-2 text-sm sm:text-base text-pink-700 dark:text-pink-300">
+              🌐 Multilingual Support
+            </div>
+          </div>
         </div>
-        {/* Right: Big Image */}
-        <div className="flex-1 flex justify-center items-center w-full">
-          <Image src="/myageny_img.png" alt="Myageny Hero" width={400} height={400} className="rounded-2xl shadow-2xl object-contain" />
+
+        {/* Right: Image (Hidden on mobile) */}
+        <div className="flex-1 hidden md:flex justify-center items-center mt-8 md:mt-0 animate-slide-in-left">
+          <Image
+            src="/myageny_img.png"
+            alt="Myageny Hero"
+            width={400}
+            height={400}
+            className="rounded-3xl shadow-2xl object-contain hover:scale-105 transition-transform duration-500 ease-in-out"
+          />
         </div>
       </section>
 
-      {/* LIC Plans Auto-scroll Section */}
-      <section className="w-full py-8 bg-gradient-to-r from-blue-100 to-blue-50">
+
+      {/* Our Services Section */}
+      <section className="w-full py-6 sm:py-8 bg-gradient-to-r from-yellow-100 to-yellow-50">
+        <h2 className="text-2xl font-bold mb-6 text-center">💼 Our Services</h2>
+        <div className="flex flex-col md:flex-row justify-center items-stretch gap-4 px-4 sm:px-8">
+
+          {/* Card 1: Chat with Agents */}
+          <div className="flex-1 bg-white rounded-xl shadow-md border border-yellow-300 p-5 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div className="text-4xl mb-3 text-center animate-pulse">💬</div>
+            <h3 className="text-lg sm:text-xl font-semibold text-center mb-2">Talk with Agents</h3>
+            <p className="text-gray-600 text-sm text-center mb-4">
+              Instantly connect with LIC agents and get all your queries resolved in real-time.
+            </p>
+            <button className="bg-yellow-400 text-white font-medium py-2 px-4 rounded hover:bg-yellow-500 transition mx-auto">
+              Start Chat
+            </button>
+          </div>
+
+          {/* Card 2: Complete Profile */}
+          <div className="flex-1 bg-white rounded-xl shadow-md border border-yellow-300 p-5 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div className="text-4xl mb-3 text-center">📋</div>
+            <h3 className="text-lg sm:text-xl font-semibold text-center mb-2">Complete Your Profile</h3>
+            <p className="text-gray-600 text-sm text-center mb-4">
+              Profile Completion: <span className="font-bold text-yellow-600">60%</span> done.<br />
+              Complete your details to unlock personalized features.
+            </p>
+            <button className="bg-yellow-400 text-white font-medium py-2 px-4 rounded hover:bg-yellow-500 transition mx-auto">
+              Complete Now
+            </button>
+          </div>
+
+          {/* Card 3: Apply for Agent */}
+          <div className="flex-1 bg-white rounded-xl shadow-md border border-yellow-300 p-5 flex flex-col justify-between hover:shadow-xl transition duration-300">
+            <div className="text-4xl mb-3 text-center">🧑‍💼</div>
+            <h3 className="text-lg sm:text-xl font-semibold text-center mb-2">Apply for Agent</h3>
+            <p className="text-gray-600 text-sm text-center mb-4">
+              Are you an LIC Agent? Join our platform and expand your reach to more customers.
+            </p>
+            <button className="bg-yellow-400 text-white font-medium py-2 px-4 rounded hover:bg-yellow-500 transition mx-auto">
+              Apply Now
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* LIC Plans Section with Fixed Top Plans + Auto-scroll All Plans */}
+      <section className="w-full py-6 sm:py-8 bg-gradient-to-r from-blue-100 to-blue-50">
         <h2 className="text-2xl font-bold mb-4 text-center">🌟 Our LIC Plans</h2>
+
+        {/* Top 3 Featured Plans - Fixed Section */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-8 px-4">
+          {licPlans.slice(0, 3).map((plan, idx) => (
+            <div
+              key={idx}
+              className="w-full sm:w-1/3 bg-white shadow-lg rounded-xl p-4 sm:p-6 flex flex-col items-center border border-blue-200 hover:scale-105 transition-transform duration-300"
+            >
+              <span className="text-3xl sm:text-4xl mb-2 animate-bounce">{plan.emoji}</span>
+              <h3 className="font-bold text-base sm:text-lg mb-1">{plan.name}</h3>
+              <p className="text-gray-600 text-xs sm:text-sm text-center">{plan.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* All Plans - Auto-scroll Section */}
         <div className="relative w-full overflow-x-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-100">
-          <div className="flex w-max animate-scroll-x gap-6 min-w-full">
+          <div className="flex w-max animate-scroll-x gap-4 sm:gap-6 min-w-full">
             {licPlans.concat(licPlans).map((plan, idx) => (
               <div
                 key={idx}
-                className="min-w-[250px] bg-white shadow-lg rounded-xl p-6 flex flex-col items-center border border-blue-200 hover:scale-105 transition-transform duration-300"
+                className="min-w-[180px] sm:min-w-[250px] bg-white shadow-lg rounded-xl p-4 sm:p-6 flex flex-col items-center border border-blue-200 hover:scale-105 transition-transform duration-300"
               >
-                <span className="text-4xl mb-2 animate-bounce">{plan.emoji}</span>
-                <h3 className="font-bold text-lg mb-1">{plan.name}</h3>
-                <p className="text-gray-600 text-sm text-center">{plan.desc}</p>
+                <span className="text-3xl sm:text-4xl mb-2 animate-bounce">{plan.emoji}</span>
+                <h3 className="font-bold text-base sm:text-lg mb-1">{plan.name}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm text-center">{plan.desc}</p>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Auto-scroll Keyframes */}
         <style>{`
-          @keyframes scroll-x {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-scroll-x {
-            animation: scroll-x 30s linear infinite;
-          }
-        `}</style>
+    @keyframes scroll-x {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-scroll-x {
+      animation: scroll-x 30s linear infinite;
+    }
+  `}</style>
       </section>
 
-      {/* Top 10 Agents Section */}
-      <section className="w-full py-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">🏅 Top 10 Agents in India</h2>
-        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-yellow-300 scrollbar-track-yellow-100">
-          <div className="flex gap-6 min-w-full w-max">
-            {agents.map((agent, idx) => (
-              <div key={idx} className="bg-yellow-100 border border-yellow-300 rounded-lg px-6 py-4 shadow hover:scale-105 transition-transform duration-300 flex flex-col items-center min-w-[200px]">
-                <span className="text-3xl mb-1">🧑‍💼</span>
-                <span className="font-semibold">{agent}</span>
-                <span className="text-xs text-gray-500">Rank #{idx + 1}</span>
-              </div>
-            ))}
+
+      {/* Top Agents & Clients - Unified Section */}
+      <section className="w-full py-8 px-4 bg-gradient-to-br from-white via-blue-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-inner">
+        <h2 className="text-3xl font-extrabold text-center mb-8 text-blue-800 dark:text-blue-300">
+          🌟 Top 10 Agents & Clients in India
+        </h2>
+
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+          {/* Agents List */}
+          <div className="flex-1 bg-yellow-50 dark:bg-yellow-900 p-4 sm:p-6 rounded-xl shadow-lg">
+            <h3 className="text-xl font-bold text-yellow-700 dark:text-yellow-300 mb-4 text-center">🏅 Top Agents</h3>
+            <ul className="space-y-4">
+              {agents.map((agent, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-center gap-4 p-3 sm:p-4 bg-white dark:bg-yellow-800 rounded-lg border border-yellow-200 dark:border-yellow-700 shadow-sm hover:scale-[1.02] transition-all duration-300"
+                >
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-yellow-300 text-white font-bold text-lg shadow-md animate-rank-pulse">
+                    #{idx + 1}
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">🧑‍💼 {agent}</span>
+                    <span className="text-xs text-gray-500">Top Performing Agent</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Clients List */}
+          <div className="flex-1 bg-green-50 dark:bg-green-900 p-4 sm:p-6 rounded-xl shadow-lg">
+            <h3 className="text-xl font-bold text-green-700 dark:text-green-300 mb-4 text-center">👑 Top Clients</h3>
+            <ul className="space-y-4">
+              {clients.map((client, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-center gap-4 p-3 sm:p-4 bg-white dark:bg-green-800 rounded-lg border border-green-200 dark:border-green-700 shadow-sm hover:scale-[1.02] transition-all duration-300"
+                >
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-400 text-white font-bold text-lg shadow-md animate-rank-pulse">
+                    #{idx + 1}
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm sm:text-base font-semibold text-gray-800 dark:text-white">🧑‍🤝‍🧑 {client}</span>
+                    <span className="text-xs text-gray-500">Premium LIC Client</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
+        <style jsx>{`
+    @keyframes rank-pulse {
+      0%, 100% {
+        transform: scale(1);
+        background-color: inherit;
+      }
+      50% {
+        transform: scale(1.1);
+        background-color: #facc15;
+      }
+    }
+    .animate-rank-pulse {
+      animation: rank-pulse 2s infinite ease-in-out;
+    }
+  `}</style>
       </section>
 
-      {/* Top 10 Clients Section */}
-      <section className="w-full py-8 bg-blue-50">
-        <h2 className="text-2xl font-bold mb-4 text-center">👑 Top 10 Clients in India</h2>
-        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-green-300 scrollbar-track-green-100">
-          <div className="flex gap-6 min-w-full w-max">
-            {clients.map((client, idx) => (
-              <div key={idx} className="bg-green-100 border border-green-300 rounded-lg px-6 py-4 shadow hover:scale-105 transition-transform duration-300 flex flex-col items-center min-w-[200px]">
-                <span className="text-3xl mb-1">🧑‍🤝‍🧑</span>
-                <span className="font-semibold">{client}</span>
-                <span className="text-xs text-gray-500">Rank #{idx + 1}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Services Section (Map & Cities) */}
+      {/* Services Section (Cities Showcase) */}
       <section className="w-full py-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">🗺️ Our Services in India</h2>
-        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-100 mb-4">
-          <div className="flex gap-4 min-w-full w-max">
+        <h2 className="text-2xl font-bold mb-6 text-center">🗺️ Our Services in India</h2>
+
+        {/* Top Fixed Cities - like Our Plans section */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4 sm:px-12 mb-8">
+          {cities.slice(0, 4).map((city, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center justify-center bg-blue-100 rounded-xl p-4 shadow-md hover:bg-blue-200 transition-colors"
+            >
+              <span className="text-4xl mb-2">{city.emoji}</span>
+              <span className="text-lg font-semibold">{city.name}</span>
+              <span className="text-xs text-blue-900">{city.desc}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Auto-scroll cities horizontally */}
+        <div className="overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-100 px-2">
+          <div className="flex gap-4 justify-center items-center ">
             {cities.map((city, idx) => (
-              <span key={idx} className="bg-blue-200 text-blue-900 rounded-full px-4 py-2 font-medium shadow hover:bg-blue-300 transition-colors duration-200 min-w-[120px] text-center">
-                {city}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <span className="text-6xl animate-pulse">🗺️</span>
-        </div>
-      </section>
-
-      {/* News Section */}
-      <section className="w-full py-8 bg-blue-50">
-        <h2 className="text-2xl font-bold mb-4 text-center">📰 Latest News</h2>
-        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-blue-100">
-          <div className="flex gap-6 min-w-full w-max">
-            {news.map((item, idx) => (
-              <div key={idx} className="bg-white border border-blue-200 rounded-lg px-6 py-4 shadow flex items-center gap-3 hover:scale-105 transition-transform duration-300 min-w-[250px]">
-                <span className="text-2xl">{item.emoji}</span>
-                <span className="font-medium">{item.title}</span>
+              <div
+                key={idx}
+                className="min-w-[120px] bg-blue-200 rounded-full text-blue-900 px-4 py-2 font-medium text-center text-sm flex items-center justify-center gap-2 shadow hover:bg-blue-300 transition-colors"
+              >
+                <span>{city.emoji}</span>
+                <span>{city.name}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Social Section */}
-      <section className="w-full py-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">🌐 Connect with Us</h2>
-        <div className="flex justify-center gap-8 flex-wrap">
-          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-            <svg className="w-10 h-10 text-blue-400 group-hover:scale-125 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195A4.916 4.916 0 0 0 16.616 3c-2.72 0-4.924 2.206-4.924 4.924 0 .386.044.762.127 1.124C7.728 8.807 4.1 6.884 1.671 3.965c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg>
-            <span className="text-sm mt-1">Twitter</span>
-          </a>
-          <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-            <svg className="w-10 h-10 text-blue-700 group-hover:scale-125 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
-            <span className="text-sm mt-1">Facebook</span>
-          </a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-            <svg className="w-10 h-10 text-pink-500 group-hover:scale-125 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.782 2.225 7.148 2.163 8.414 2.105 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.425 3.678 1.406c-.98.98-1.274 2.092-1.334 3.374C2.013 8.332 2 8.741 2 12c0 3.259.013 3.668.072 4.948.06 1.282.354 2.394 1.334 3.374.98.98 2.092 1.274 3.374 1.334C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.282-.06 2.394-.354 3.374-1.334.98-.98 1.274-2.092 1.334-3.374.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.06-1.282-.354-2.394-1.334-3.374-.98-.98-2.092-1.274-3.374-1.334C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-            <span className="text-sm mt-1">Instagram</span>
-          </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center group">
-            <svg className="w-10 h-10 text-blue-600 group-hover:scale-125 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
-            <span className="text-sm mt-1">LinkedIn</span>
-          </a>
+
+      <section className="w-full py-8 bg-blue-50">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-6 text-blue-900">📰 Latest Updates</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {news.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-xl border border-blue-200 shadow-sm p-5 hover:shadow-md hover:scale-[1.01] transition-all duration-300"
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="text-3xl">{item.emoji}</div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
+                    <p className="text-sm text-gray-500">{item.time}</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-700">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
 
       {/* Footer Section */}
-      <footer className="w-full py-10 bg-gray-100 text-gray-700 text-center mt-8 border-t border-gray-200">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 px-4">
-          <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
-            <Image src="/myageny_logo.png" alt="Myageny Logo" width={48} height={48} className="mb-2" />
-            <span className="font-bold text-lg mb-1">myageny.com</span>
-            <span className="text-sm">Your trusted LIC partner for agents & clients</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="font-semibold mb-2">Quick Links</span>
-            <a href="#" className="text-blue-600 hover:underline">Home</a>
-            <a href="#" className="text-blue-600 hover:underline">Plans</a>
-            <a href="#" className="text-blue-600 hover:underline">Agents</a>
-            <a href="#" className="text-blue-600 hover:underline">Clients</a>
-            <a href="#" className="text-blue-600 hover:underline">Contact</a>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="font-semibold mb-2">Connect</span>
-            <div className="flex gap-4 mb-2">
-              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="hover:scale-125 transition-transform duration-200" title="Twitter">
-                <svg className="w-7 h-7 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195A4.916 4.916 0 0 0 16.616 3c-2.72 0-4.924 2.206-4.924 4.924 0 .386.044.762.127 1.124C7.728 8.807 4.1 6.884 1.671 3.965c-.423.724-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.212c9.057 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg>
-              </a>
-              <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" className="hover:scale-125 transition-transform duration-200" title="Facebook">
-                <svg className="w-7 h-7 text-blue-700" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
-              </a>
-              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="hover:scale-125 transition-transform duration-200" title="Instagram">
-                <svg className="w-7 h-7 text-pink-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.782 2.225 7.148 2.163 8.414 2.105 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.425 3.678 1.406c-.98.98-1.274 2.092-1.334 3.374C2.013 8.332 2 8.741 2 12c0 3.259.013 3.668.072 4.948.06 1.282.354 2.394 1.334 3.374.98.98 2.092 1.274 3.374 1.334C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.282-.06 2.394-.354 3.374-1.334.98-.98 1.274-2.092 1.334-3.374.059-1.28.072-1.689.072-4.948 0-3.259-.013-3.668-.072-4.948-.06-1.282-.354-2.394-1.334-3.374-.98-.98-2.092-1.274-3.374-1.334C15.668.013 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-              </a>
-              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="hover:scale-125 transition-transform duration-200" title="LinkedIn">
-                <svg className="w-7 h-7 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.554V9h3.565v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
-              </a>
-            </div>
-            <span className="text-xs text-gray-500">Share your LIC journey with us on social media!</span>
-          </div>
-        </div>
-        <div className="mt-8 text-xs text-gray-500">&copy; {new Date().getFullYear()} myageny.com | All rights reserved | Designed with ❤️ for LIC agents & clients</div>
-      </footer>
+      <Footer />
     </main>
   );
 };
