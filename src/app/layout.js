@@ -6,7 +6,7 @@ export const metadata = {
   description: "A platform to facilitate seamless interaction between LIC agents and clients.",
   icons: {
     icon: [
-      { url: "/yourlicagent.png", sizes: "64x64", type: "image/png" }
+      { url: "/myageny_logo.png", sizes: "64x64", type: "image/png" }
     ],
   },
 };
