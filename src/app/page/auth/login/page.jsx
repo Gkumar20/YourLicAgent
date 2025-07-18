@@ -2,17 +2,41 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import PopupMessage from "@/app/components/PopupMessage";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const route = useRouter();
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Logging in:", formData.username);
+    setLoginSuccess(false);
+    setPopupMessage("");
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setPopupMessage("✅ You have successfully logged in.");
+        setLoginSuccess(true);
+        setFormData({ username: "", password: "" });
+      } else {
+        setPopupMessage(data.error || "Login failed.");
+        setLoginSuccess(false);
+      }
+    } catch (err) {
+      setPopupMessage("Something went wrong. Please try again.");
+      setLoginSuccess(false);
+    }
     setShowPopup(true);
   };
 
@@ -35,7 +59,7 @@ const Login = () => {
             required
           />
           <input
-            type="password"
+            type="current-password"
             name="password"
             placeholder="Password"
             value={formData.password}
@@ -63,8 +87,13 @@ const Login = () => {
 
       {showPopup && (
         <PopupMessage
-          message="✅ You have successfully logged in. A link has been sent to your email."
-          onClose={() => setShowPopup(false)}
+          message={popupMessage}
+          onClose={() => {
+            setShowPopup(false);
+            if (loginSuccess) {
+              route.push('/page/home');
+            }
+          }}
         />
       )}
     </div>

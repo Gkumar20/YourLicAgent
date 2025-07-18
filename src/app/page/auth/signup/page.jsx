@@ -1,11 +1,12 @@
 'use client';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import PopupMessage from '@/app/components/PopupMessage';
 
 export default function SignupPage() {
   const pathname = usePathname();
   const isForgot = pathname.includes('/forgotpass');
+  const route = useRouter();
 
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
@@ -13,6 +14,7 @@ export default function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [popupMessage, setPopupMessage] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [signupSuccess, setSignupSuccess] = useState(false);
 
   const generateStrongPassword = () => {
     const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -49,27 +51,45 @@ export default function SignupPage() {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validatePassword(password)) {
-      alert(
-        'Password must be at least 8 characters and include uppercase, lowercase, number, and symbol.'
-      );
+      setPopupMessage('Password must be at least 8 characters and include uppercase, lowercase, number, and symbol.');
+      setSignupSuccess(false);
+      setShowPopup(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords don't match.");
+      setPopupMessage("Passwords don't match.");
+      setSignupSuccess(false);
+      setShowPopup(true);
       return;
     }
 
-    const userEmail = email.includes('@') ? email : 'user@example.com';
-    setPopupMessage(
-      isForgot
-        ? `Reset link sent to your email: ${userEmail}`
-        : `Password sent to your email: ${userEmail}`
-    );
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, mobile, password }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setPopupMessage('Signup successful! You can now log in.');
+        setEmail('');
+        setMobile('');
+        setPassword('');
+        setConfirmPassword('');
+        setSignupSuccess(true);
+      } else {
+        setPopupMessage(data.error || 'Signup failed.');
+        setSignupSuccess(false);
+      }
+    } catch (err) {
+      setPopupMessage('Something went wrong. Please try again.');
+      setSignupSuccess(false);
+    }
     setShowPopup(true);
   };
 
@@ -119,7 +139,7 @@ export default function SignupPage() {
           <label className="block font-medium text-gray-700">Password</label>
           <div className="flex gap-2 items-center">
             <input
-              type="text"
+              type="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -141,7 +161,7 @@ export default function SignupPage() {
             Confirm Password
           </label>
           <input
-            type="text"
+            type="current-password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -169,7 +189,15 @@ export default function SignupPage() {
       </form>
 
       {showPopup && (
-        <PopupMessage message={popupMessage} onClose={() => setShowPopup(false)} />
+        <PopupMessage
+          message={popupMessage}
+          onClose={() => {
+            setShowPopup(false);
+            if (signupSuccess) {
+              route.push('/page/auth/login');
+            }
+          }}
+        />
       )}
     </div>
   );
