@@ -67,7 +67,7 @@ export default function SignupPage() {
     const userEmail = email.includes('@') ? email : 'user@example.com';
     setPopupMessage(
       isForgot
-        ? `Reset link sent to your email: ${userEmail}`
+        ? `Reset Password sent to your email: ${userEmail}`
         : `Password sent to your email: ${userEmail}`
     );
     setShowPopup(true);
@@ -85,7 +85,7 @@ export default function SignupPage() {
 
         <div>
           <label className="block font-medium text-gray-700">
-            Email or Mobile Number
+            Email ID
           </label>
           <input
             type="text"
@@ -93,11 +93,11 @@ export default function SignupPage() {
             onChange={(e) => setEmail(e.target.value)}
             required
             className="w-full mt-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-200"
-            placeholder="Enter email or mobile number"
+            placeholder="Enter email ID"
           />
         </div>
 
-        {!isForgot && (
+        
           <div>
             <label className="block font-medium text-gray-700">
               Mobile Number
@@ -113,7 +113,7 @@ export default function SignupPage() {
               placeholder="10-digit mobile number"
             />
           </div>
-        )}
+        
 
         <div>
           <label className="block font-medium text-gray-700">Password</label>
@@ -164,7 +164,7 @@ export default function SignupPage() {
           type="submit"
           className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition"
         >
-          {isForgot ? 'Send Reset Link' : 'Sign Up'}
+          {isForgot ? 'Reset Password' : 'Sign Up'}
         </button>
       </form>
 

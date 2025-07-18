@@ -11,8 +11,8 @@ const navItems = [
     { name: "Our Clients", path: "/page/ourclient", icon: "🧑‍🤝‍🧑" },
     { name: "Our Plans", path: "/page/plan", icon: "📋" },
     { name: "Admin", path: "/page/admin", icon: "🛡️" },
-    { name: "Myageny Society", path: "/page/society", icon: "🏢" },    
-    { name: "Login", path: "/login", icon: "🔐" },
+    { name: "Myageny Society", path: "/page/society", icon: "🏢" },
+    { name: "Login", path: "/page/auth/login", icon: "🔐" },
 ];
 
 const fixedItems = [
