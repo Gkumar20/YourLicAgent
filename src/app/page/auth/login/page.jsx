@@ -2,10 +2,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import PopupMessage from "@/app/components/PopupMessage";
-import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const route = useRouter();
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
@@ -26,9 +24,29 @@ const Login = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        setPopupMessage("✅ You have successfully logged in.");
-        setLoginSuccess(true);
-        setFormData({ username: "", password: "" });
+        // Verify JWT (optional, for demo)
+        const token = data.token;
+        let isValid = false;
+        if (token) {
+          // Simple decode (not secure, just for demo)
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            isValid = payload && payload.userId === data.userId;
+          } catch (e) {
+            isValid = false;
+          }
+        }
+        if (!isValid) {
+          setPopupMessage("Invalid token received. Please try again.");
+          setLoginSuccess(false);
+        } else {
+          setPopupMessage("✅ You have successfully logged in.");
+          setLoginSuccess(true);
+          // Store only userId in localStorage
+          localStorage.setItem("userId", data.userId);
+          localStorage.setItem("token", token);
+          setFormData({ username: "", password: "" });
+        }
       } else {
         setPopupMessage(data.error || "Login failed.");
         setLoginSuccess(false);
@@ -91,7 +109,8 @@ const Login = () => {
           onClose={() => {
             setShowPopup(false);
             if (loginSuccess) {
-              route.push('/page/home');
+              // Force reload so Navbar updates (admin icon, etc)
+              window.location.href = '/page/home';
             }
           }}
         />

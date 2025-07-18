@@ -2,6 +2,7 @@ import dbConnect from '@/utils/db';
 import User from '@/models/User';
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export async function POST(req) {
 	try {
@@ -20,8 +21,14 @@ export async function POST(req) {
 		if (!isMatch) {
 			return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
 		}
-		// Success
-		return NextResponse.json({ message: 'Login successful', user: { email: user.email, mobile: user.mobile } }, { status: 200 });
+		// Sign JWT with user id only
+		const token = jwt.sign(
+			{ userId: user._id },
+			process.env.JWT_SECRET,
+			{ expiresIn: '7d' }
+		);
+		// Success: only return userId and token
+		return NextResponse.json({ message: 'Login successful', token, userId: user._id }, { status: 200 });
 	} catch (err) {
 		return NextResponse.json({ error: err.message || 'Server error' }, { status: 500 });
 	}
